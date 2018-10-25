@@ -1,0 +1,35 @@
+Station : Dhaka                 Lat.23Deg.46Mts.N            Long.90Deg.23Mts.E
+Station : Tangail               Lat.24Deg.15Mts.N            Long.89Deg.55Mts.E
+Station : Mymensingh            Lat.24Deg.43Mts.N            Long.90Deg.26Mts.E
+Station : Faridpur              Lat.23Deg.36Mts.N            Long.89Deg.51Mts.E
+Station : Madaripur             Lat.23Deg.10Mts.N            Long.90Deg.11Mts.E
+Station : Srimangal             Lat.24Deg.18Mts.N            Long.91Deg.44Mts.E
+Station : Sylhet                Lat.24Deg.54Mts.N            Long.91Deg.53Mts.E
+Station : Bogra                 Lat.24Deg.51Mts.N            Long.89Deg.22Mts.E
+Station : Dinajpur              Lat.25Deg.39Mts.N            Long.88Deg.41Mts.E
+Station : Ishurdi               Lat.24Deg. 8Mts.N            Long.89Deg. 3Mts.E
+Station : Rajshahi              Lat.24Deg.22Mts.N            Long.88Deg.42Mts.E
+Station : Rangpur               Lat.25Deg.44Mts.N            Long.89Deg.14Mts.E
+Station : sydpur                Lat.25Deg.47Mts.N            Long.88Deg.53Mts.E
+Station : chuadanga             Lat.23Deg.39Mts.N            Long.88Deg.52Mts.E
+Station : Jessore               Lat.23Deg.11Mts.N            Long.89Deg.10Mts.E
+Station : Khulna                Lat.22Deg.47Mts.N            Long.89Deg.32Mts.E
+Station : Mongla                Lat.22Deg.20Mts.N            Long.89Deg.36Mts.E
+Station : Satkhira              Lat.22Deg.43Mts.N            Long.89Deg. 5Mts.E
+Station : Barisal               Lat.22Deg.45Mts.N            Long.90Deg.20Mts.E
+Station : Bhola                 Lat.22Deg.41Mts.N            Long.90Deg.39Mts.E
+Station : Khepupara             Lat.21Deg.59Mts.N            Long.90Deg.14Mts.E
+Station : Patuakhali            Lat.22Deg.20Mts.N            Long.90Deg.20Mts.E
+Station : Chandpur              Lat.23Deg.16Mts.N            Long.90Deg.42Mts.E
+Station : Ambagan(Ctg)          Lat.22Deg.21Mts.N            Long.91Deg.49Mts.E
+Station : Chittagong            Lat.22Deg.16Mts.N            Long.91Deg.49Mts.E
+Station : Comilla               Lat.23Deg.26Mts.N            Long.91Deg.11Mts.E
+Station : Cox's Bazar           Lat.21Deg.26Mts.N            Long.91Deg.56Mts.E
+Station : Feni                  Lat.23Deg. 2Mts.N            Long.91Deg.25Mts.E
+Station : Hatiya                Lat.22Deg.26Mts.N            Long.91Deg. 6Mts.E
+Station : Kutubdia              Lat.21Deg.49Mts.N            Long.91Deg.51Mts.E
+Station : M.court               Lat.22Deg.52Mts.N            Long.91Deg. 6Mts.E
+Station : Rangamati             Lat.22Deg.32Mts.N            Long.92Deg.12Mts.E
+Station : Sandwip               Lat.22Deg.29Mts.N            Long.91Deg.26Mts.E
+Station : Sitakunda             Lat.23Deg.35Mts.N            Long.91Deg.42Mts.E
+Station : Teknaf                Lat.20Deg.52Mts.N            Long.92Deg.18Mts.E
