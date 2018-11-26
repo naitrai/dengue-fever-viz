@@ -39,6 +39,8 @@ Plotly.d3.csv(
       currentRain = [],
       currentHumid = [];
 
+    listofYears.push("All");
+
     //getting list of years from data
     for (var i = 0; i < allDates.length; i++) {
       var year = allDates[i];
@@ -53,8 +55,9 @@ Plotly.d3.csv(
       numYear = parseInt(chosenYear, 10);
 
       //displays all data
-      if (numYear === 1) {
+      if (chosenYear === "All") {
         for (var i = 0; i < allDates.length; i++) {
+          currentDate.push(allDates[i]);
           currentCases.push(allCases[i]);
           currentDeaths.push(allDeaths[i]);
           currentTemps.push(allTemps[i]);
@@ -83,18 +86,23 @@ Plotly.d3.csv(
     }
 
     //graphing all the data
-    setParallelCoords("1");
+    setParallelCoords("All");
 
     function setParallelCoords(chosenYear) {
       getYearData(chosenYear);
 
       //title
       var titleStr;
-      var numYear = parseInt(chosenYear, 10);
-      if(numYear === 1){
-        titleStr = 'Comparing Weather and Dengue Fever Death Cases from ' + listofYears[0] + ' - ' + listofYears[listofYears.length - 1]; 
+      // var numYear = parseInt(chosenYear, 10);
+      if (chosenYear === "All") {
+        titleStr =
+          "Comparing Weather and Dengue Fever Death Cases from " +
+          listofYears[1] +
+          " - " +
+          listofYears[listofYears.length - 1];
       } else {
-        titleStr = 'Comparing Weather and Dengue Fever Death Cases for ' + chosenYear; 
+        titleStr =
+          "Comparing Weather and Dengue Fever Death Cases for " + chosenYear;
       }
 
       var data = [
@@ -148,7 +156,7 @@ Plotly.d3.csv(
           ]
         }
       ];
-     
+
       var layout = {
         title: titleStr,
         width: 1200,
@@ -175,5 +183,6 @@ Plotly.d3.csv(
     }
 
     yearSelector.addEventListener("change", updateGraph, false);
+    console.log(currentDate);
   }
 );
