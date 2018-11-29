@@ -24,8 +24,8 @@ Plotly.d3.csv(
     }
 
     //init variables
-    var width = 500,
-      height = 310,
+    var width = 120,
+      height = 320,
       allDates = unpack(rows, "date"),
       allCases = unpack(rows, "cases"),
       allDeaths = unpack(rows, "deaths"),
@@ -197,7 +197,7 @@ Plotly.d3.csv(
       };
 
       // GRAPHS DATA
-      Plotly.newPlot("graphDiv", data, layout);
+      Plotly.newPlot("parCoordsContain", data, layout);
     }
 
     //Dropdown Menu
@@ -243,7 +243,7 @@ Plotly.d3.csv(
         .attr("width", 10)
         .attr("height", 10)
         .style("fill", function(d, i) {
-          return color((i / (legendVals.length - 2)*.1));
+          return color(((i+1) / (legendVals.length - 2))*1.05);
         });
 
       legend3

@@ -1,11 +1,54 @@
+#parCoordsContain {
+  position: relative;
+  font-family: Lato;
+  /* justify-content: center; */
+  display: flex;
+}
+
+#parCoordsContain>* {
+  position: relative;
+}
+
+#legSelectContain {
+  display: flex;
+  overflow: visible;
+  position: relative;
+  font-size: 14px;
+  justify-content: left;
+
+}
+
 #select {
-  position: absolute;
-  left: 1200px;
-  bottom: 300px;
+  position: relative;
+  top: 450px;
+  text-align: left;
+
 }
 
 .legend3 {
-  position: absolute;
-  left: 1200px;
-  bottom: 350px;
+  position: relative;
+  top: 100px;
+  /* right: 90px; */
+  height: 300px;
+
+}
+
+g.style {
+  font-size: 13px;
+}
+
+.left {
+  left: center;
+}
+
+.right {
+  right: center;
+}
+
+.top {
+  top: center;
+}
+
+.bottom {
+  bottom: 0;
 }
