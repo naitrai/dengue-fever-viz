@@ -243,7 +243,7 @@ Plotly.d3.csv(
         .attr("width", 10)
         .attr("height", 10)
         .style("fill", function(d, i) {
-          return color((i / (legendVals.length - 2)*.95));
+          return color((i / (legendVals.length - 2)*.1));
         });
 
       legend3
