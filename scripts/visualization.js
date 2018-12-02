@@ -150,19 +150,21 @@ Plotly.d3.csv(
                 Math.round(Math.min.apply(Math, currentTemps)),
                 Math.round(Math.max.apply(Math, currentTemps))
               ],
-              label: "temp",
+              // labelfont: family("Lato"),
+              label: "Temperture",
               values: currentTemps
+
             },
             {
               range: [
                 Math.min.apply(Math, currentRain),
                 Math.max.apply(Math, currentRain)
               ],
-              label: "rainfall",
+              label: "Rainfall",
               values: currentRain
             },
             {
-              label: "humidity",
+              label: "Humidity",
               range: [
                 Math.round(Math.min.apply(Math, currentHumid)),
                 Math.round(Math.max.apply(Math, currentHumid))
@@ -170,13 +172,13 @@ Plotly.d3.csv(
               values: currentHumid
             },
             {
-              label: "deaths",
+              label: "Deaths",
               range: (Math.round(Math.min(currentDeaths)),
               Math.round(Math.max(currentDeaths))),
               values: currentDeaths
             },
             {
-              label: "cases",
+              label: "Cases",
               range: (Math.round(Math.min(currentCases)),
               Math.round(Math.max(currentCases))),
               values: currentCases

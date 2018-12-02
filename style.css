@@ -1,18 +1,33 @@
+body {
+
+  font-family: "Source Code Pro", Consolas, monaco, monospace;
+}
+
 #parCoordsContain {
-  font-family: Lato !important;
+  font-family: Lato, monospace;
   position: relative;
   display: flex;
 }
 
-#parCoordsContain > * {
+/* #parCoordsContain > * {
   position: relative;
+} */
+
+.js-plotly-plot .plotly, .js-plotly-plot .plotly div {
+  /* display: flex;
+  position: relative;
+  left: 0; */
+  font-family: Lato, monospace !important;
 }
 
-.plot-container .plotly {
-  display: flex;
-  position: relative;
-  left: 0;
+.axis-title{
+  font-size: 14px !important;
+  font-family: Lato, monospace !important;
 }
+
+/* .gtitle{
+  font-family: Lato, monospace;
+} */
 
 #legSelectContain {
   display: flex;
@@ -32,6 +47,7 @@
 }
 
 #select {
+  font-family: Lato, monospace;
   z-index: 2;
   position: absolute;
   top: 0px;
