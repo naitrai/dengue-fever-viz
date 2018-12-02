@@ -1,7 +1,6 @@
 #parCoordsContain {
+  font-family: Lato !important;
   position: relative;
-  font-family: Lato;
-  /* justify-content: center; */
   display: flex;
 }
 
@@ -23,25 +22,19 @@
   height: 600px;
   right: 0;
   top: 100px;
-
 }
 
 #legend3 {
-  display: inline-block;
+  z-index: 1;
   position: absolute;
-  /* right: 0; */
-  /* right: 90px; */
-  /* height: 300px; */
+  top: 0px;
+  left: 0px;
 }
 
 #select {
-  display: inline-block;
-  position: relative;
-  /* right: 0;
-  left: 0; */
-  height: 50px;
-  /* top: 450px; */
-  /* text-align: left */
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  top: 320px;
 }
-
-
