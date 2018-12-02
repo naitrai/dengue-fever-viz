@@ -214,27 +214,58 @@ Plotly.d3.csv(
 
     //legend
     function setLegend(chosenYear, months, legendVals) {
+      //color
       var color = d3.scaleSequential(d3.interpolateGreens);
-      var legend;
+
+      //legendText
+      var legendText;
       if (chosenYear === "All") {
         //all years
-        legend = d3.scale.ordinal().domain(legendVals);
+        legendText = d3.scale.ordinal().domain(legendVals);
       } else {
         //selected year
-        legend = d3.scale.ordinal().domain(months);
+        legendText = d3.scale.ordinal().domain(months);
       }
 
+      //declaring legend
       var legend3 = svgLegned3
         .selectAll(".legend3")
-        .data(legend.domain())
+        .data(legendText.domain())
         .enter()
         .append("g")
-        .attr("class", "legends3")
+        .attr("class", "gElements")
         .attr("transform", function(d, i) {
           {
             return "translate(0," + i * 20 + ")";
           }
         });
+
+      // legend3
+      //   .append("p")
+      //   .html("Legend Title")
+      //   .style("text-align", "center")
+      //   .style("font-size", "20px");
+
+      // var list = legend3.append("ul");
+      // var entries = list
+      //   .selectAll("li")
+      //   .data(legendText)
+      //   .enter()
+      //   .append("li");
+
+      // entries
+      //   .append("span")
+      //   .attr("class", "rect")
+      //   .style("background-color", function(d) {
+      //     return color(((i + 1) / (legendVals.length - 2)) * 1.05);
+      //   });
+
+      // entries
+      //   .append("span")
+      //   .attr("class", "label")
+      //   .html(function(d) {
+      //     return d;
+      //   });
 
       legend3
         .append("rect")
@@ -243,7 +274,7 @@ Plotly.d3.csv(
         .attr("width", 10)
         .attr("height", 10)
         .style("fill", function(d, i) {
-          return color(((i+1) / (legendVals.length - 2))*1.05);
+          return color(((i + 1) / (legendVals.length - 2)) * 1.05);
         });
 
       legend3
@@ -259,12 +290,22 @@ Plotly.d3.csv(
     }
 
     //clears legend - v buggie
-    async function clearLegend() {
-      var s = await document.getElementsByClassName("legends3");
-      for (var i = 0; i < s.length; i++) {
-        s[0].remove();
+    // async function clearLegend() {
+    //   var s = await document.getElementsByClassName("gElements");
+    //   var ix = 0;
+    //   console.log(s.length);
+    //   while (ix < s.length) {
+    //     s[0].remove();
+    //     ix++;
+    //   }
+    // }
+
+    function clearLegend(){
+      var elements = document.getElementsByClassName("gElements");
+      while(elements.length > 0){
+          elements[0].parentNode.removeChild(elements[0]);
       }
-    }
+  }
 
     //updates graph
     function updateGraph() {
