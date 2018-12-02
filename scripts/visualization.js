@@ -55,11 +55,6 @@ Plotly.d3.csv(
       currentRain = [],
       currentHumid = [],
       svgLegend3 = null;
-    // svgLegned3 = d3
-    //   .select(".legend3")
-    //   .append("svg")
-    //   .attr("width", width)
-    //   .attr("height", height);
 
     listofYears.push("All");
 
@@ -240,33 +235,6 @@ Plotly.d3.csv(
           }
         });
 
-      // legend3
-      //   .append("p")
-      //   .html("Legend Title")
-      //   .style("text-align", "center")
-      //   .style("font-size", "20px");
-
-      // var list = legend3.append("ul");
-      // var entries = list
-      //   .selectAll("li")
-      //   .data(legendText)
-      //   .enter()
-      //   .append("li");
-
-      // entries
-      //   .append("span")
-      //   .attr("class", "rect")
-      //   .style("background-color", function(d) {
-      //     return color(((i + 1) / (legendVals.length - 2)) * 1.05);
-      //   });
-
-      // entries
-      //   .append("span")
-      //   .attr("class", "label")
-      //   .html(function(d) {
-      //     return d;
-      //   });
-
       legend3
         .append("rect")
         .attr("x", 0)
@@ -289,16 +257,6 @@ Plotly.d3.csv(
         .style("font-size", 15);
     }
 
-    //clears legend - v buggie
-    // async function clearLegend() {
-    //   var s = await document.getElementsByClassName("gElements");
-    //   var ix = 0;
-    //   console.log(s.length);
-    //   while (ix < s.length) {
-    //     s[0].remove();
-    //     ix++;
-    //   }
-    // }
 
     function clearLegend(){
       var elements = document.getElementsByClassName("gElements");
