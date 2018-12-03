@@ -16,7 +16,6 @@ Plotly.d3.csv(
 
   function(err, rows) {
     dataset = rows;
-
     function unpack(rows, key) {
       return rows.map(function(row) {
         return row[key];
@@ -54,6 +53,16 @@ Plotly.d3.csv(
       currentTemps = [],
       currentRain = [],
       currentHumid = [],
+      minTemp,
+      maxTemp,
+      minRain,
+      maxRain,
+      minHumid,
+      maxHumid,
+      minDeath,
+      maxDeath,
+      minCase,
+      maxCase,
       svgLegend3 = null;
 
     listofYears.push("All");
@@ -101,6 +110,17 @@ Plotly.d3.csv(
           }
         }
       }
+      //set max & mins for ranges
+      minTemp = Math.min.apply(null, currentTemps).toFixed(2);
+      maxTemp = Math.max.apply(null, currentTemps).toFixed(2);
+      minRain = Math.min.apply(null, currentRain);
+      maxRain = Math.max.apply(null, currentRain);
+      minHumid = Math.min.apply(null, currentHumid).toFixed(2);
+      maxHumid = Math.max.apply(null, currentHumid).toFixed(2);
+      minDeath = Math.min.apply(null, currentDeaths);
+      maxDeath = Math.max.apply(null, currentDeaths);
+      minCase = Math.min.apply(null, currentCases);
+      maxCase = Math.max.apply(null, currentCases);
     }
 
     //graphing all the data
@@ -114,10 +134,15 @@ Plotly.d3.csv(
       setParallelCoords("All");
       setLegend("All", months, legendVals);
     }
+
     init(svgLegend3);
 
     function setParallelCoords(chosenYear) {
       getYearData(chosenYear);
+
+      if (maxDeath == 0) {
+        maxDeath = maxDeath + 1;
+      }
 
       //title
       var titleStr;
@@ -146,41 +171,28 @@ Plotly.d3.csv(
 
           dimensions: [
             {
-              range: [
-                Math.round(Math.min.apply(Math, currentTemps)),
-                Math.round(Math.max.apply(Math, currentTemps))
-              ],
-              // labelfont: family("Lato"),
-              label: "Temperture",
+              range: [minTemp, maxTemp],
+              label: "Temperture (C)",
               values: currentTemps
-
             },
             {
-              range: [
-                Math.min.apply(Math, currentRain),
-                Math.max.apply(Math, currentRain)
-              ],
+              range: [minRain, maxRain],
               label: "Rainfall",
               values: currentRain
             },
             {
               label: "Humidity",
-              range: [
-                Math.round(Math.min.apply(Math, currentHumid)),
-                Math.round(Math.max.apply(Math, currentHumid))
-              ],
+              range: [minHumid, maxHumid],
               values: currentHumid
             },
             {
               label: "Deaths",
-              range: (Math.round(Math.min(currentDeaths)),
-              Math.round(Math.max(currentDeaths))),
+              range: [minDeath, maxDeath],
               values: currentDeaths
             },
             {
               label: "Cases",
-              range: (Math.round(Math.min(currentCases)),
-              Math.round(Math.max(currentCases))),
+              range: [minCase, maxCase],
               values: currentCases
             }
           ]
@@ -259,13 +271,12 @@ Plotly.d3.csv(
         .style("font-size", 15);
     }
 
-
-    function clearLegend(){
+    function clearLegend() {
       var elements = document.getElementsByClassName("gElements");
-      while(elements.length > 0){
-          elements[0].parentNode.removeChild(elements[0]);
+      while (elements.length > 0) {
+        elements[0].parentNode.removeChild(elements[0]);
       }
-  }
+    }
 
     //updates graph
     function updateGraph() {
