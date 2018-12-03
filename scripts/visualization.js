@@ -136,6 +136,7 @@ Plotly.d3.csv(
     }
 
     init(svgLegend3);    
+
     function setParallelCoords(chosenYear) {
       getYearData(chosenYear);
       if (maxDeath == 0) {
@@ -260,8 +261,6 @@ Plotly.d3.csv(
           return color((i +.5) / (colorRange));
         });
       
-      console.log(colorRange);
-
       legend3
         .append("text")
         .attr("x", 20)
