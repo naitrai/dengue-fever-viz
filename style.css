@@ -1,16 +1,8 @@
-body {
-  font-family: Lato;
-}
-
 #parCoordsContain {
   font-family: Lato;
   position: relative;
   display: flex;
 }
-
-/* #parCoordsContain > * {
-  position: relative;
-} */
 
 .js-plotly-plot .plotly, .js-plotly-plot .plotly div {
   font-family: Lato !important;
@@ -28,19 +20,15 @@ body {
 
 #legSelectContain {
   font-family: Lato !important;
-  display: flex;
-  position: absolute;
   width: 200px;
   height: 600px;
   right: 0;
-  top: 100px;
+  top: 140px;
+  position: relative;
 }
 
 #legend3 {
   z-index: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
 }
 .textselected{
   font-size: 13px !important;
@@ -53,7 +41,6 @@ text{
   font-family: Lato !important;
   font-size: 14px;
   z-index: 2;
-  position: absolute;
   top: 0px;
   left: 0px;
   top: 320px;

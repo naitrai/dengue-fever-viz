@@ -95,6 +95,7 @@ Plotly.d3.csv(
       } else {
         numYear = numYear * 100;
         currentDate = [];
+        currentCases = [];
         currentDeaths = [];
         currentTemps = [];
         currentRain = [];
@@ -119,8 +120,8 @@ Plotly.d3.csv(
       maxHumid = Math.max.apply(null, currentHumid).toFixed(2);
       minDeath = Math.min.apply(null, currentDeaths);
       maxDeath = Math.max.apply(null, currentDeaths);
-      minCase = Math.min.apply(null, currentCases);
-      maxCase = Math.max.apply(null, currentCases);
+      minCase = Number.parseFloat(Math.min.apply(null, currentCases));
+      maxCase = Number.parseFloat(Math.max.apply(null, currentCases));
     }
 
     //graphing all the data
@@ -139,7 +140,6 @@ Plotly.d3.csv(
 
     function setParallelCoords(chosenYear) {
       getYearData(chosenYear);
-
       if (maxDeath == 0) {
         maxDeath = maxDeath + 1;
       }
@@ -283,6 +283,9 @@ Plotly.d3.csv(
       clearLegend();
       setParallelCoords(yearSelector.value);
       setLegend(yearSelector.value, months, legendVals);
+
+      console.log(minCase);
+      console.log(maxCase);
     }
 
     yearSelector.addEventListener("change", updateGraph, false);
