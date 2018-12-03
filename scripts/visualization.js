@@ -46,7 +46,7 @@ Plotly.d3.csv(
         "December"
       ],
       listofYears = [],
-      legendVals = [],
+      yearLabels = [],
       currentDate = [],
       currentCases = [],
       currentDeaths = [],
@@ -64,7 +64,6 @@ Plotly.d3.csv(
       minCase,
       maxCase,
       svgLegend3 = null;
-
     listofYears.push("All");
 
     //getting list of years from data
@@ -73,7 +72,7 @@ Plotly.d3.csv(
       var sub = year.toString().slice(0, 4);
       if (listofYears.indexOf(sub) === -1) {
         listofYears.push(sub);
-        legendVals.push(sub);
+        yearLabels.push(sub);
       }
     }
 
@@ -133,11 +132,10 @@ Plotly.d3.csv(
         .attr("height", height);
 
       setParallelCoords("All");
-      setLegend("All", months, legendVals);
+      setLegend("All", months, yearLabels);
     }
 
-    init(svgLegend3);
-
+    init(svgLegend3);    
     function setParallelCoords(chosenYear) {
       getYearData(chosenYear);
       if (maxDeath == 0) {
@@ -172,7 +170,7 @@ Plotly.d3.csv(
           dimensions: [
             {
               range: [minTemp, maxTemp],
-              label: "Temperture (C)",
+              label: "Temperture",
               values: currentTemps
             },
             {
@@ -209,7 +207,7 @@ Plotly.d3.csv(
       Plotly.newPlot("parCoordsContain", data, layout);
     }
 
-    //Dropdown Menu
+    //Year select menu
     var yearSelector = document.querySelector(".yeardata");
 
     function assignOptions(textArray, selector) {
@@ -222,18 +220,21 @@ Plotly.d3.csv(
     assignOptions(listofYears, yearSelector);
 
     //legend
-    function setLegend(chosenYear, months, legendVals) {
+    function setLegend(chosenYear, months, yearLabels) {
       //color
       var color = d3.scaleSequential(d3.interpolateGreens);
 
       //legendText
       var legendText;
+      var colorRange;
       if (chosenYear === "All") {
         //all years
-        legendText = d3.scale.ordinal().domain(legendVals);
+        legendText = d3.scale.ordinal().domain(yearLabels);
+        colorRange = yearLabels.length;
       } else {
         //selected year
         legendText = d3.scale.ordinal().domain(months);
+        colorRange = months.length;
       }
 
       //declaring legend
@@ -255,9 +256,11 @@ Plotly.d3.csv(
         .attr("y", 0)
         .attr("width", 10)
         .attr("height", 10)
-        .style("fill", function(d, i) {
-          return color(((i + 1) / (legendVals.length - 2)) * 1.05);
+        .style("fill", function (d, i) {
+          return color((i +.5) / (colorRange));
         });
+      
+      console.log(colorRange);
 
       legend3
         .append("text")
@@ -282,10 +285,7 @@ Plotly.d3.csv(
     function updateGraph() {
       clearLegend();
       setParallelCoords(yearSelector.value);
-      setLegend(yearSelector.value, months, legendVals);
-
-      console.log(minCase);
-      console.log(maxCase);
+      setLegend(yearSelector.value, months, yearLabels);
     }
 
     yearSelector.addEventListener("change", updateGraph, false);

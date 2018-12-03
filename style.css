@@ -4,18 +4,21 @@
   display: flex;
 }
 
-.js-plotly-plot .plotly, .js-plotly-plot .plotly div {
+.js-plotly-plot .plotly,
+.js-plotly-plot .plotly div {
   font-family: Lato !important;
 }
 
-.axis-title{
+.axis-title {
   font-size: 14px !important;
   font-family: Lato !important;
 }
 
-.gtitle{
+.gtitle {
   font-family: Lato !important;
   font-size: 20px !important;
+  font-weight: bolder !important;
+  padding: 25%;
 }
 
 #legSelectContain {
@@ -30,12 +33,13 @@
 #legend3 {
   z-index: 1;
 }
-.textselected{
+.textselected {
   font-size: 13px !important;
 }
-text{
+text {
   font-size: 13.5px !important;
   font-family: Lato !important;
+  font-weight: bolder !important;
 }
 #select {
   font-family: Lato !important;
