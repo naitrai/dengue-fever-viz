@@ -133,9 +133,117 @@ Plotly.d3.csv(
 
       setParallelCoords("All");
       setLegend("All", months, yearLabels);
+      setBottomStuff("All", 'Temperature', 'Cases');
     }
 
     init(svgLegend3);    
+    function setBottomStuff(chosenYear, x, y) {
+        setScatters(chosenYear, x, y);
+        setLines(chosenYear,x,y);
+    }
+    function setScatters(chosenYear, t1, t2){
+
+        datax = getNames(t1);
+        datay = getNames(t2);
+        console.log(datax)
+        xtit = datax[0];
+        ytit = datay[0];
+        xmin = datax[1];
+        ymin = datay[1];
+        xmax = datax[2]+(datax[2]-minTemp)/20;
+        ymax = datay[2]+(datay[2]-minCase)/20;
+        xdat = datax[3];
+        ydat = datay[3];
+
+        var s1 = {
+            x: xdat,
+            y: ydat,
+            mode: 'markers',
+            type: 'scatter'
+        };
+        if(chosenYear != "All"){
+            m_text = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                      'August', 'September', 'October', 'November', 'December']
+            s1.text=m_text;
+        }
+        var layout = {
+            title: 'Correlation',
+            width: 400,
+            height: 400,
+            xaxis: {
+                range: [xmin,xmax],
+                title: xtit,
+                tick0: xmin,
+
+            },
+            yaxis: {
+                range: [ymin,ymax],
+                title: ytit,
+                tick0: ymin,
+
+            }
+        };
+        data = [s1];
+        Plotly.newPlot('corr', data, layout);
+    }
+
+    function setLines(chosenYear, y1, y2) {
+        n = 0;
+        xnums = [];
+        xaxis = ''
+        if(chosenYear != "All"){
+            n = 12;
+            xnums = [...Array(12).keys()];
+            m_text = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                      'August', 'September', 'October', 'November', 'December'];
+            xaxis = 'Data from ' + chosenYear;
+        } else {
+            n = 192;
+            xnums = [...Array(192).keys(0)];
+            xaxis = 'Data from all years';
+        }
+
+        datax = getNames(y1);
+        datay = getNames(y2);
+        console.log(datax)
+        xtit = datax[0];
+        ytit = datay[0];
+        xmin = datax[1];
+        ymin = datay[1];
+        xmax = datax[2]+(datax[2]-minTemp)/20;
+        ymax = datay[2]+(datay[2]-minCase)/20;
+        xdat = datax[3];
+        ydat = datay[3];
+
+        var s1 = {
+            x: xnums,
+            y: xdat,
+            type: 'scatter',
+            name: xtit
+        };
+        var s2 = {
+            x: xnums,
+            y: ydat,
+            type: 'scatter',
+            name: ytit
+        };
+
+        var layout = {
+            title: 'Plotted over Time',
+            width: 850,
+            height: 400,
+            xaxis: {
+                range: [0,n],
+                title: xaxis
+            },
+            yaxis: {
+                range: [0,Math.max(xmax,ymax)+10],
+                title: 'Values Relative to Features'
+            }
+        };
+        data = [s1, s2];
+        Plotly.newPlot('line', data, layout);
+    }
 
     function setParallelCoords(chosenYear) {
       getYearData(chosenYear);
@@ -201,7 +309,7 @@ Plotly.d3.csv(
       var layout = {
         title: titleStr,
         width: 1200,
-        height: 600
+        height: 550
       };
 
       // GRAPHS DATA
@@ -285,8 +393,44 @@ Plotly.d3.csv(
       clearLegend();
       setParallelCoords(yearSelector.value);
       setLegend(yearSelector.value, months, yearLabels);
+      setBottomStuff(yearSelector.value, 'Temperature', 'Cases');
     }
 
+    function getNames(name) {
+        aname = '';
+        amin  = 0;
+        amax  = 0;
+        dat   = [];
+        if (name == 'Cases') {
+            aname = 'Number of cases';
+            dat = currentCases;
+            amin = minCase;
+            amax = maxCase;
+        }else if (name == 'Temperature') {
+            aname = 'Average Temperature';
+            dat = currentTemps;
+            amin = minTemp;
+            amax = maxTemp;
+        }else if (name == 'Humidity') {
+            aname = 'Humidity';
+            dat = currentHumid;
+            amin = minHumid;
+            amax = maxHumid;
+        }else if (name == 'Rainfall') {
+            aname = 'Total Monthly Rainfall';
+            dat = currentRain;
+            amin = minRain;
+            amax = maxRain;
+        }else if (name == 'Deaths') {
+            aname = 'Number of Deaths';
+            dat = currentDeaths;
+            amin = minDeath;
+            amax = maxDeath;
+        } else {
+            console.log('invalid type');
+        }
+        return [aname, amin, amax, dat];
+    }
     yearSelector.addEventListener("change", updateGraph, false);
   }
 );

@@ -2,8 +2,14 @@
   font-family: Lato;
   position: relative;
   display: flex;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
-
+#bottom {
+    position: absolute;
+    top: 520px;
+    display: flex;
+}
 .js-plotly-plot .plotly,
 .js-plotly-plot .plotly div {
   font-family: Lato !important;
