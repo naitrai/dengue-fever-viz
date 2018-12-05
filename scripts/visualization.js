@@ -133,7 +133,7 @@ Plotly.d3.csv(
 
       setParallelCoords("All");
       setLegend("All", months, yearLabels);
-      setBottomStuff("All", 'Temperature', 'Cases');
+      setBottomStuff("All", 'Cases', 'Temperature');
     }
 
     init(svgLegend3);    
@@ -189,18 +189,39 @@ Plotly.d3.csv(
 
     function setLines(chosenYear, y1, y2) {
         n = 0;
+        m3 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
         xnums = [];
         xaxis = ''
+        xts = [];
+        xvs = []
         if(chosenYear != "All"){
             n = 12;
-            xnums = [...Array(12).keys()];
+            xnums  = m3;
+            xticks = xnums
             m_text = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
                       'August', 'September', 'October', 'November', 'December'];
-            xaxis = 'Data from ' + chosenYear;
+            xaxis  = 'Data from ' + chosenYear;
+            xts = xnums
+            xtv = xts
         } else {
             n = 192;
             xnums = [...Array(192).keys(0)];
+            xts = [...Array(16).keys(0)];
+            xtv = xts;
             xaxis = 'Data from all years';
+            //xnums = ['Jan ','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var i;
+            for (i = 0; i < 192; i++) {
+              y = 2000+(Math.floor(i/12))
+              m = m3[i % 12]
+              xnums[i] = m + ' ' + y.toString();
+            }
+            for(i=0; i < 16; i++) {
+              y = 2000 + i;
+              xts[i] = 'Jan ' + y.toString()
+              xtv = xts
+            }
+            console.log(xnums);
         }
 
         datax = getNames(y1);
@@ -210,11 +231,10 @@ Plotly.d3.csv(
         ytit = datay[0];
         xmin = datax[1];
         ymin = datay[1];
-        xmax = datax[2]+(datax[2]-minTemp)/20;
-        ymax = datay[2]+(datay[2]-minCase)/20;
+        xmax = Math.round(datax[2]+(datax[2]-minTemp)/20);
+        ymax = Math.round(datay[2]);
         xdat = datax[3];
         ydat = datay[3];
-
         var s1 = {
             x: xnums,
             y: xdat,
@@ -225,7 +245,8 @@ Plotly.d3.csv(
             x: xnums,
             y: ydat,
             type: 'scatter',
-            name: ytit
+            name: ytit,
+            yaxis: 'y2',
         };
 
         var layout = {
@@ -233,12 +254,32 @@ Plotly.d3.csv(
             width: 850,
             height: 400,
             xaxis: {
-                range: [0,n],
-                title: xaxis
+                title: xaxis,
+                showticklabels: true,
+                tickangle: 'auto',
+                tickfont: {
+                  size: 12,
+                  color: 'black'
+                },
+                tickvals: xts,
+                ticktext: xtv
             },
             yaxis: {
-                range: [0,Math.max(xmax,ymax)+10],
-                title: 'Values Relative to Features'
+                range: [xmin,xmax+2],
+                title: xtit,
+            },
+            yaxis2: {
+                autotick: false,
+                range: [ymin, ymax],
+                title: ytit,
+                overlaying: 'y',
+                side: 'right',
+                tick0: 0,
+                dtick: ymax-ymin
+            },
+            legend: {
+                x: 1.1,
+                y: 0.95
             }
         };
         data = [s1, s2];
