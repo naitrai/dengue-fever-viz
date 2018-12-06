@@ -21,7 +21,7 @@ Plotly.d3.csv(
         return row[key];
       });
     }
-
+    var listofVs = ['Cases','Deaths','Temperature','Humidity','Rainfall']
     //init variables
     var width = 120,
       height = 320,
@@ -122,6 +122,17 @@ Plotly.d3.csv(
       minCase = Number.parseFloat(Math.min.apply(null, currentCases));
       maxCase = Number.parseFloat(Math.max.apply(null, currentCases));
     }
+    var yearSelector = document.querySelector(".yeardata");
+    var v1Selector = document.querySelector(".v1");
+    var v2Selector = document.querySelector(".v2");
+
+    function assignOptions(textArray, selector) {
+      for (var i = 0; i < textArray.length; i++) {
+        var currentOption = document.createElement("option");
+        currentOption.text = textArray[i];
+        selector.appendChild(currentOption);
+      }
+    }
 
     //graphing all the data
     function init(svgLegend3) {
@@ -131,15 +142,18 @@ Plotly.d3.csv(
         .attr("width", width)
         .attr("height", height);
 
+      assignOptions(listofYears, yearSelector);
+      assignOptions(listofVs, v1Selector);
+      assignOptions(listofVs, v2Selector);
       setParallelCoords("All");
       setLegend("All", months, yearLabels);
       setBottomStuff("All", 'Cases', 'Temperature');
     }
 
     init(svgLegend3);    
-    function setBottomStuff(chosenYear, x, y) {
-        setScatters(chosenYear, x, y);
-        setLines(chosenYear,x,y);
+    function setBottomStuff() {
+        setScatters(yearSelector.value, v1Selector.value, v2Selector.value);
+        setLines(yearSelector.value, v1Selector.value, v2Selector.value);
     }
     function setScatters(chosenYear, t1, t2){
 
@@ -231,8 +245,8 @@ Plotly.d3.csv(
         ytit = datay[0];
         xmin = datax[1];
         ymin = datay[1];
-        xmax = Math.round(datax[2]+(datax[2]-minTemp)/20);
-        ymax = Math.round(datay[2]);
+        xmax = Math.round(datax[2]+(datax[2]-xmin)/20);
+        ymax = Math.round(datay[2]+(datay[2]-ymin)/20);
         xdat = datax[3];
         ydat = datay[3];
         var s1 = {
@@ -270,7 +284,7 @@ Plotly.d3.csv(
             },
             yaxis2: {
                 autotick: false,
-                range: [ymin, ymax],
+                range: [ymin, ymax+2],
                 title: ytit,
                 overlaying: 'y',
                 side: 'right',
@@ -358,16 +372,7 @@ Plotly.d3.csv(
     }
 
     //Year select menu
-    var yearSelector = document.querySelector(".yeardata");
 
-    function assignOptions(textArray, selector) {
-      for (var i = 0; i < textArray.length; i++) {
-        var currentOption = document.createElement("option");
-        currentOption.text = textArray[i];
-        selector.appendChild(currentOption);
-      }
-    }
-    assignOptions(listofYears, yearSelector);
 
     //legend
     function setLegend(chosenYear, months, yearLabels) {
@@ -434,7 +439,7 @@ Plotly.d3.csv(
       clearLegend();
       setParallelCoords(yearSelector.value);
       setLegend(yearSelector.value, months, yearLabels);
-      setBottomStuff(yearSelector.value, 'Temperature', 'Cases');
+      setBottomStuff();
     }
 
     function getNames(name) {
@@ -473,5 +478,7 @@ Plotly.d3.csv(
         return [aname, amin, amax, dat];
     }
     yearSelector.addEventListener("change", updateGraph, false);
+    v1Selector.addEventListener("change", setBottomStuff, false);
+    v2Selector.addEventListener("change", setBottomStuff, false);
   }
 );
