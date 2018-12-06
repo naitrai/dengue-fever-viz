@@ -1,49 +1,71 @@
-<!DOCTYPE html> <link rel="stylesheet" href="style.css" />
+<!DOCTYPE html> 
 <html>
+
   <head>
     <meta charset="UTF-8" />
     <title>Dengue Fever Dashboard</title>
+
+    <!-- Dependencies -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://d3js.org/d3.v3.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Lato"
+    />
+    
+    <!-- Local Resources -->
+    <link rel="stylesheet" href="style.css" />
     <link href="./mosquitoe.png" rel="icon" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="//fonts.googleapis.com/css?family=Lato"
-    />
-    <link
-      rel="stylesheet"
-      href="//fonts.googleapis.com/css?family=Lato"
-      type="text/css"
-    />
   </head>
-  <body>
-    <div id="parCoordsContain">
 
-      <div id="legSelectContain">
-        <div class="legend3"></div>
-        <div id="select">
-          Year:
-          <select class="yeardata"> </select>
+  <!-- WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
+  <body>
+    
+    <h1 id="mainTitle"> Dengue Fever Data Visualization</h1>
+
+    <!-- Parallel Coordinates -->
+    <div class="container">
+      <div class="contentBox">
+        <div id="parCoordsContain">
+          <div id="legSelectContain">
+            <div class="legend3"></div>
+            <div id="select">
+              Year:
+              <select class="yeardata"> </select>
+            </div>
+          </div>
         </div>
+        <div id="bottom"></div>
       </div>
     </div>
-    <div id="bottom">
-      <div id="corr"></div>
-      <div id="line"></div>
-      <div id="select">
-          Variable 1:
-          <select class="v1"> </select>
 
-          Variable 2:
-          <select class="v2"> </select>
-        </div>
-    </div>
-  <script src="scripts/visualization.js"></script>
+    <!-- Correlation Charts -->
+    <div id="corr"></div>
+    <div id="line"></div>
+    <div id="select">
+        Variable 1:
+        <select class="v1"> </select>
 
+        Variable 2:
+        <select class="v2"> </select>
+      </div>
+  </div>
+  
+  <!-- Age Chart -->
   <div id="ageline"></div>
+
+  <!-- Symptom Chart -->
+  <div id="infoBox0"></div>
+  <div id="infoBox1"></div>
+  <div id="infoBox2"></div>
+  <div id="infoBox3"></div>
+
+  <!-- Scripts  -->
+  <script src="scripts/visualization.js"></script>
   <script src="scripts/agelinegraph.js"></script>
+  <script src="scripts/barchart.js"></script>
   </body>
 </html>

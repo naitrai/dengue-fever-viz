@@ -1,6 +1,6 @@
 
 
-var hospitalData = d3.csv("../resources/symptom_data.csv", (data) => {
+var hospitalData = d3.csv("Data/symptom_data.csv", (data) => {
 
 
     // Hierarchy of data
@@ -78,7 +78,6 @@ var hospitalData = d3.csv("../resources/symptom_data.csv", (data) => {
         };
         
         var noData = {
-            // Labels
             x: symptomList,
             y: noRatioList,
             name: 'No',
