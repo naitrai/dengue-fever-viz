@@ -7,8 +7,8 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script type"text/javascript" src="scripts/map.js"></script>
         
-        <script type"text/javascript" src="scripts/barchart.js"></script>
         <link rel="stylesheet" href="style/style.css"></link>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
         <!-- Font styling -->
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -25,15 +25,21 @@
                 <svg id=bgdMap></svg>
             </div>
             
-            <div id=infoContainer>
+            <div id="infoContainer">
                 <h2 id="infoTitle">Hospital Information</h2>
-                <div id=infoBox>
-                  
-                </div>
+                
+                    <div id="infoBox0"></div>
+                    <div id="infoBox1"></div>
+                    <div id="infoBox2"></div>
+                    <div id="infoBox3"></div>
+                
+                
             </div>
         </div>
 
         <script>createMap();</script>
+        <script type"text/javascript" src="scripts/barchart.js"></script>
+
 
     </body>
 </html>

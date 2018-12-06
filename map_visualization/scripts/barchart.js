@@ -1,140 +1,112 @@
-d3.csv("../resources/symptom_data.csv", (data)=> {
 
-    // Transform age from string to integer
-    data.forEach((d) => {
+
+var hospitalData = d3.csv("../resources/symptom_data.csv", (data) => {
+
+
+    // Hierarchy of data
+    hospitalList = ["Chittagong Medical College Hospital", "Dhaka Medical College Hospital",
+                    "Uttara Adhunik Medical College Hospital", "Khulna Medical College Hospital"];
+    symptomList = Object.keys(data[1]).slice(3, Object.keys(data[1]).length - 1)
+    symptomState = ["yes", "no"];
+
+    // Top down approach of creating the object
+    var hospitalData = {}
+
+    for (var hospital = 0; hospital < hospitalList.length; hospital++) {
         
-        d.Age_AdultPt = +d.Age_AdultPt;
-        d.Age_children = Math.floor(+d.Age_children / 12);
+        // Add hospital 
+        hospitalData[hospitalList[hospital]] = {};
 
-    });
 
-    // Create JS Object 
-    var hospitalDataCount = {
-        
-        "hospitals": [
-            {
-                "name": "Chittagong Medical College Hospital",
-                "data": {
-                    "Age_AdultPt": 0,	
-                    "Age_children": 0, 
-                    "Fever_Type": 0,
-                    "Fever_chills": 0,
-                    "Fever_Subside": 0,
-                    "Cough": 0,	
-                    "Severe_Headache": 0,	
-                    "Nausea": 0,	
-                    "Vomiting": 0,
-                    "AbdominalPain": 0,
-                    "Severe_Myalgia": 0,
-                    "Arthalgia": 0,
-                    "Back_Pain": 0,
-                    "Rash": 0,
-                    "Itching": 0,	
-                    "Retroorbital_Pain": 0,	
-                    "Hemorrhagic_menifestations": 0,	
-                    "Haemorrhagic_spot": 0,
-                    "Conjunctival_Haemorrhage": 0,	
-                    "Travel_history": 0,	
-                    "mosquito_present": 0,
-                    "Family_sickness": 0,	
-                    "Neighbourhood_illness": 0,	
-                    "result": 0
-                }               
-            },
+        // Add symptom in hospital
+        for (var symptom = 0; symptom < symptomList.length; symptom++) {
+            hospitalData[hospitalList[hospital]][symptomList[symptom]] = {};
 
-            {
-                "name": "Dhaka Medical College Hospital",
-                "data": {
-                    "Age_AdultPt": 0,	
-                    "Age_children": 0, 
-                    "Fever_Type": 0,
-                    "Fever_chills": 0,
-                    "Fever_Subside": 0,
-                    "Cough": 0,	
-                    "Severe_Headache": 0,	
-                    "Nausea": 0,	
-                    "Vomiting": 0,
-                    "AbdominalPain": 0,
-                    "Severe_Myalgia": 0,
-                    "Arthalgia": 0,
-                    "Back_Pain": 0,
-                    "Rash": 0,
-                    "Itching": 0,	
-                    "Retroorbital_Pain": 0,	
-                    "Hemorrhagic_menifestations": 0,	
-                    "Haemorrhagic_spot": 0,
-                    "Conjunctival_Haemorrhage": 0,	
-                    "Travel_history": 0,	
-                    "mosquito_present": 0,
-                    "Family_sickness": 0,	
-                    "Neighbourhood_illness": 0,	
-                    "result": 0
-                }
-            },
 
-            {
-                "name": "Uttara Adhunik Medical College Hospital",
-                "data": {
-                    "Age_AdultPt": 0,	
-                    "Age_children": 0, 
-                    "Fever_Type": 0,
-                    "Fever_chills": 0,
-                    "Fever_Subside": 0,
-                    "Cough": 0,	
-                    "Severe_Headache": 0,	
-                    "Nausea": 0,	
-                    "Vomiting": 0,
-                    "AbdominalPain": 0,
-                    "Severe_Myalgia": 0,
-                    "Arthalgia": 0,
-                    "Back_Pain": 0,
-                    "Rash": 0,
-                    "Itching": 0,	
-                    "Retroorbital_Pain": 0,	
-                    "Hemorrhagic_menifestations": 0,	
-                    "Haemorrhagic_spot": 0,
-                    "Conjunctival_Haemorrhage": 0,	
-                    "Travel_history": 0,	
-                    "mosquito_present": 0,
-                    "Family_sickness": 0,	
-                    "Neighbourhood_illness": 0,	
-                    "result": 0
-                }
-            },
-
-            {
-                "name": "Khulna Medical College Hospital",
-                "data": {
-                    "Age_AdultPt": 0,	
-                    "Age_children": 0, 
-                    "Fever_Type": 0,
-                    "Fever_chills": 0,
-                    "Fever_Subside": 0,
-                    "Cough": 0,	
-                    "Severe_Headache": 0,	
-                    "Nausea": 0,	
-                    "Vomiting": 0,
-                    "AbdominalPain": 0,
-                    "Severe_Myalgia": 0,
-                    "Arthalgia": 0,
-                    "Back_Pain": 0,
-                    "Rash": 0,
-                    "Itching": 0,	
-                    "Retroorbital_Pain": 0,	
-                    "Hemorrhagic_menifestations": 0,	
-                    "Haemorrhagic_spot": 0,
-                    "Conjunctival_Haemorrhage": 0,	
-                    "Travel_history": 0,	
-                    "mosquito_present": 0,
-                    "Family_sickness": 0,	
-                    "Neighbourhood_illness": 0,	
-                    "result": 0
-                }
-            },
-        ]
+            // Add state for each symptom
+            for (var state = 0; state < symptomState.length; state++) {
+                hospitalData[hospitalList[hospital]][symptomList[symptom]][symptomState[state]] = 0;
+            }
+        }
     }
-    
-    // Fill JS Objects with data
-    
 
-})
+
+    // Iterate through all the rows and add counts to specific 
+    for (var i = 0; i < data.length; i++) {
+
+        var currentRow = data[i] 
+        
+        // Locate the hospital name 
+        hospitalName = currentRow.Hospital_Code
+
+        for (var j = 0; j < symptomList.length; j++) {
+
+            var symptomName = symptomList[j];        
+            var state = currentRow[symptomName].toLowerCase();
+
+            if (typeof state === 'string' && (state === "yes" || state === "no")) {
+
+                hospitalData[hospitalName][symptomName][state] += 1;
+            }
+        }
+    }
+
+    // Normalizing the data
+    var graphNumber = 0;
+    for (var hospital in hospitalData) {
+
+        var yesRatioList = []
+        var noRatioList = []
+        for (var i = 0; i < Object.keys(hospitalData[hospital]).length; i++) {
+
+            var yesFrequency = hospitalData[hospital][symptomList[i]]["yes"];
+            var noFrequency = hospitalData[hospital][symptomList[i]]["no"];
+            var total = yesFrequency + noFrequency
+
+            console.log(symptomList[i] + " Yes: " + yesFrequency + " No: " + noFrequency+ " Total: " + total)
+
+            console.log(yesFrequency / total)
+            yesRatioList.push(yesFrequency / total);
+            noRatioList.push(noFrequency / total);
+        }
+
+        var yesData = {
+            x: symptomList,
+            y: yesRatioList,
+            name: 'Yes',
+            type: 'bar'
+        };
+        
+        var noData = {
+            // Labels
+            x: symptomList,
+            y: noRatioList,
+            name: 'No',
+            type: 'bar'
+        };
+
+        var data = [yesData, noData];      
+        var layout = {
+            barmode: 'stack',
+            title: hospital + " Symptom Ratios",
+            xaxis: {
+                title: 'Symptoms'
+            },
+
+            yaxis: {
+                title: 'Percentage %'
+            }
+        };
+
+        Plotly.newPlot('infoBox' + graphNumber, data, layout=layout);
+        
+        document.getElementById('infoBox' + graphNumber).on('plotly_click', function(data){
+            d3.select(this)
+                .transition()
+                .duration(300)
+                .style("opacity", "0")
+        });
+        
+        graphNumber++;
+    }
+});
