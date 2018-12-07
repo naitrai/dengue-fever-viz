@@ -1,10 +1,14 @@
+/* --------------------------------------- Plotly.js Styling --------------------------------------- */
 #parCoordsContain {
   font-family: Lato;
   position: relative;
   display: flex;
   margin-bottom: 0;
   padding-bottom: 0;
+
+  padding: 0 auto;
 }
+
 #bottom {
     position: absolute;
     top: 520px;
@@ -29,12 +33,15 @@
 
 #legSelectContain {
   font-family: Lato !important;
-  width: 200px;
+  width: 150px;
   height: 600px;
-  right: 0;
-  top: 140px;
   position: relative;
+  
+  /* Change position of the legend here! */
+  top: 18px;
+  left: 36px;
 }
+
 
 #legend3 {
   z-index: 1;
@@ -53,5 +60,87 @@ text {
   z-index: 2;
   top: 0px;
   left: 0px;
-  top: 320px;
 }
+
+
+/* --------------------------------------- Site Styling --------------------------------------- */
+
+body {
+  box-sizing: border-box;
+  margin: 0 40px;
+}
+
+h1, h2 {
+
+  color: #464545;
+
+  text-align: center;
+  font-family: "Lato", sans-serif;
+
+  margin-top: 30px;
+  margin-bottom: 0px;
+
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+p, select{
+  font-family: "Open Sans", sans-serif;
+}
+
+
+.container {
+  height: 20%;
+  width: 85%;
+  
+  
+  /* Positioning */
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  /* Margins */
+  margin: 0 auto;
+}
+
+.contentBox-1-3 {
+  display: inline-block;
+  position: relative;
+
+  width: 33%;
+  height: 100%;
+}
+
+.contentBox-2-3 {
+  display: inline-block;
+  position: relative;
+
+  width: 66%;
+  height: 100%;
+}
+
+.contentBox-even {
+
+  display: inline-block;
+  position: relative;
+
+  width: 50%;
+  height: 100%;
+}
+
+#variableSelect {
+  display: block;
+
+  float: right;
+  width: 400px;
+  height: 40px;
+
+  margin-right: 60px;
+}
+

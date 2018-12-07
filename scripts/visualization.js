@@ -363,12 +363,12 @@ Plotly.d3.csv(
 
       var layout = {
         title: titleStr,
-        width: 1200,
+        width: 800,
         height: 550
       };
 
       // GRAPHS DATA
-      Plotly.newPlot("parCoordsContain", data, layout);
+      Plotly.newPlot("parCoordsContain", data, layout,{responsive: true});
     }
 
     //Year select menu
