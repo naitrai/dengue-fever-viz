@@ -48,7 +48,7 @@ These were files given to us to research more about Dengue Fever.
 
 * Displays the ratio of every symptom for a particular hospital of postive (had Dengue Fever) and negative cases.
 
-#### visualization.js
+**visualization.js**
 
 * Displays how weather (rain, temp, humidiy) is related to the number of Dengue Fever cases and deaths.
 
