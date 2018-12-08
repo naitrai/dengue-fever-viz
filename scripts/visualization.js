@@ -363,7 +363,7 @@ Plotly.d3.csv(
 
       var layout = {
         title: titleStr,
-        width: 800,
+        width: 750,
         height: 550
       };
 

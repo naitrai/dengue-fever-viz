@@ -12,6 +12,7 @@
     top: 520px;
     display: flex;
 }
+
 .js-plotly-plot .plotly,
 .js-plotly-plot .plotly div {
   font-family: Lato !important;
@@ -34,11 +35,6 @@
   width: 150px;
   height: 600px;
   position: relative;
-  
-  /* Change position of the legend here! */
-  top: 16px;
-  right: 120px;
-
 }
 
 
@@ -83,8 +79,6 @@ h1, h2 {
 
   margin-top: 0;
   margin-bottom: 0;
-
-
 }
 
 h1 {
@@ -98,7 +92,6 @@ h2 {
 p, select, option{
   font-family: "Open Sans", sans-serif;
 }
-
 
 .container {
   
@@ -132,7 +125,6 @@ p, select, option{
 }
 
 .contentBox-even {
-
   display: inline-block;
   position: relative;
 
