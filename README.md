@@ -39,12 +39,12 @@ These were files given to us to research more about Dengue Fever.
 
 ### Scripts
 
-#### agelinegraph.js
+**agelinegraph.js**
 
 * Displays the frequency of ages that appear relating to Dengue Fever.
 * Not represented in overall dashboard  
 
-#### barchart.js
+**barchart.js**
 
 * Displays the ratio of every symptom for a particular hospital of postive (had Dengue Fever) and negative cases.
 
